@@ -46,7 +46,7 @@ end
 gem_package "passenger" do
   action :install
   version node['passenger']['version']
-  notifies :run, 'execute[passenger_module]'
+  notifies :run, 'execute[passenger_module]', :immediately
 end
 
 execute "passenger_module" do
