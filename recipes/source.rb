@@ -43,8 +43,9 @@ else
   end
 end
 
-gem_package "passenger" do
+package "passenger" do
   action :install
+  provider Chef::Provider::Package::Rubygems
   version node['passenger']['version']
   notifies :run, 'execute[passenger_module]', :immediately
 end
