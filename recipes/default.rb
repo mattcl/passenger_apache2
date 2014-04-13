@@ -26,16 +26,16 @@ include_recipe 'apache2'
 
 case node['passenger']['install_method']
 when 'source'
-  include_recipe 'passenger_apache2::source'
+  include_recipe 'passenger_apache2-mod::source'
 when 'package'
-  include_recipe 'passenger_apache2::package'
+  include_recipe 'passenger_apache2-mod::package'
   node.set['passenger']['manage_module_conf'] = false
 else
   raise "Unsupported passenger installation method requested: #{node['passenger']['install_method']}. Supported: source or package."
 end
 
 if(node['passenger']['manage_module_conf'])
-  include_recipe 'passenger_apache2::mod_rails'
+  include_recipe 'passenger_apache2-mod::mod_rails'
 end
 
 ruby_block "reload_ruby" do
