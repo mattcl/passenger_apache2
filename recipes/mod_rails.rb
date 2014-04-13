@@ -22,11 +22,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe 'passenger_apache2'
+include_recipe 'passenger_apache2-mod'
 
 if platform_family?('debian')
   template "#{node['apache']['dir']}/mods-available/passenger.load" do
-    cookbook 'passenger_apache2'
+    cookbook 'passenger_apache2-mod'
     source 'passenger.load.erb'
     owner 'root'
     group 'root'
@@ -38,7 +38,7 @@ end
 node.default['passenger']['module_path'] = "#{node['passenger']['root_path']}/#{PassengerConfig.build_directory_for_version(node['passenger']['version'])}/apache2/mod_passenger.so"
 
 template "#{node['apache']['dir']}/mods-available/passenger.conf" do
-  cookbook 'passenger_apache2'
+  cookbook 'passenger_apache2-mod'
   source 'passenger.conf.erb'
   owner 'root'
   group 'root'
