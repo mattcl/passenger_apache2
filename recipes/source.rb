@@ -44,10 +44,13 @@ else
 end
 
 gem_package "passenger" do
+  action :install
   version node['passenger']['version']
+  notifies :run, 'execute[passenger_module]'
 end
 
 execute "passenger_module" do
   command "#{node['passenger']['ruby_bin']} #{node['passenger']['root_path']}/bin/passenger-install-apache2-module _#{node['passenger']['version']}_ --auto"
   creates node['passenger']['module_path']
+  action :nothing
 end

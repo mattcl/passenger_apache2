@@ -1,4 +1,4 @@
-name              "passenger_apache2"
+name              "passenger_apache2-mod"
 maintainer        "Opscode, Inc."
 maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
