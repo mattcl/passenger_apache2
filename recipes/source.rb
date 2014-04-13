@@ -43,11 +43,11 @@ else
   end
 end
 
-package "passenger" do
+gem_package "passenger" do
   action :install
-  provider Chef::Provider::Package::Rubygems
   version node['passenger']['version']
   notifies :run, 'execute[passenger_module]', :immediately
+  not_if { File.exists?(node['passenger']['root_path']) } #hacky
 end
 
 execute "passenger_module" do
