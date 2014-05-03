@@ -46,7 +46,7 @@ end
 gem_package "passenger" do
   action :install
   version node['passenger']['version']
-  notifies :run, 'execute[passenger_module]', :immediately
+  notifies :run, 'execute[passenger_module]', :delayed
   not_if { File.exists?(node['passenger']['root_path']) } #hacky
 end
 
